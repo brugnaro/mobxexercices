@@ -28,6 +28,10 @@ const load = () => render((
   </AppContainer>
 ), root)
 
+setInterval(() => {
+  wishList.items[0].changePrice(wishList.items[0].price + 1)
+}, 1000)
+
 // This is needed for Hot Module Replacement
 if (module.hot) {
   module.hot.accept('./components/App', load)

@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 
 import WishListItemView from './WishListItemView'
 
@@ -10,4 +11,4 @@ const WishListView = ({ whishList }) => (
   </div>
 )
 
-export default WishListView
+export default observer(WishListView)
