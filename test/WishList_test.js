@@ -8,6 +8,8 @@ it('can create a instance of a model', () => {
 
   expect(item.price).toBe(100.00)
   expect(item.image).toBe('')
+  item.changeName('Narnia')
+  expect(item.name).toBe('Narnia')
 })
 
 it('can create a wishlist', () => {
@@ -22,4 +24,17 @@ it('can create a wishlist', () => {
 
   expect(list.items.length).toBe(1)
   expect(list.items[0].price).toBe(100.0)
+})
+
+it('can add new items', () => {
+  const list = WishList.create()
+  list.add(WishListItem.create({
+    name: 'Cherston',
+    price: 10
+  }))
+
+  expect(list.items.length).toBe(1)
+  expect(list.items[0].name).toBe('Cherston')
+  list.items[0].changeName('The Lord Of Rings')
+  expect(list.items[0].name).toBe('The Lord Of Rings')
 })
