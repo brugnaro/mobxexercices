@@ -1,7 +1,9 @@
 import { render } from 'react-dom'
 import App from './components/App'
 import { getSnapshot } from 'mobx-state-tree'
+
 import { WishList } from './models/WishList'
+import { Group } from './models/Group'
 
 let initialState = {
   items: [
@@ -18,22 +20,40 @@ let initialState = {
   ]
 }
 
+let initialGroupState = {
+  users: [
+    {
+      id: 1,
+      name: 'Jose',
+      gender: 'm'
+    },
+    {
+      id: 2,
+      name: 'Joana',
+      gender: 'f'
+    }
+  ]
+}
+
 let wishList = WishList.create(initialState)
 
+let group = Group.create(initialGroupState)
+
 function renderApp () {
-  render(<App wishList={wishList} />, document.getElementById('root'))
+  render(
+    <App wishList={wishList} group={group} />,
+    document.getElementById('root')
+  )
 }
 
 renderApp()
 
 if (module.hot) {
   module.hot.accept(['./components/App'], () => {
-    // new components
     renderApp()
   })
 
   module.hot.accept(['./models/WishList'], () => {
-    // new model definitions
     const snapshot = getSnapshot(wishList)
     wishList = WishList.create(snapshot)
     renderApp()
