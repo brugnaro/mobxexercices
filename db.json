@@ -1,0 +1,14 @@
+{
+  "suggestions_f": [
+    {
+      "name": "The notebook",
+      "price": 10.31,
+      "image": "http://image"
+    },
+    {
+      "name": "Lego",
+      "price": 349.95,
+      "image": "http://image"
+    }
+  ]
+}

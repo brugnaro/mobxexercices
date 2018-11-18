@@ -1,10 +1,7 @@
 import { render } from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
 import App from './components/App'
-
-import { onSnapshot } from 'mobx-state-tree'
-
 import { WishList } from './models/WishList'
+import { getSnapshot } from 'mobx-state-tree'
 
 let initialState = {
   items: [
@@ -21,33 +18,24 @@ let initialState = {
   ]
 }
 
-if (localStorage.getItem('wishlistapp')) {
-  const json = JSON.parse(localStorage.getItem('wishlistapp'))
-  if (WishList.is(json)) initialState = json
+let wishList = WishList.create(initialState)
+
+function renderApp () {
+  render(<App wishList={wishList} />, document.getElementById('root'))
 }
 
-const wishList = WishList.create(initialState)
+renderApp()
 
-onSnapshot(wishList, snapshot => {
-  localStorage.setItem('wishlistapp', JSON.stringify(snapshot))
-})
-
-const root = document.getElementById('root')
-const load = () =>
-  render(
-    <AppContainer>
-      <App wishList={wishList} />
-    </AppContainer>,
-    root
-  )
-
-setInterval(() => {
-  wishList.items[0].changePrice(wishList.items[0].price + 1)
-}, 1000)
-
-// This is needed for Hot Module Replacement
 if (module.hot) {
-  module.hot.accept('./components/App', load)
-}
+  module.hot.accept(['./components/App'], () => {
+    // new components
+    renderApp()
+  })
 
-load()
+  module.hot.accept(['./models/WishList'], () => {
+    // new model definitions
+    const snapshot = getSnapshot(wishList)
+    wishList = WishList.create(snapshot)
+    renderApp()
+  })
+}
