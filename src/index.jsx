@@ -23,7 +23,7 @@ const root = document.getElementById('root')
 const load = () => render((
   <AppContainer>
     <App
-      whishList={wishList}
+      wishList={wishList}
     />
   </AppContainer>
 ), root)

@@ -7,7 +7,7 @@ export default class App extends Component {
     return (
       <div>
         <h4>Wish List</h4>
-        <WishListView whishList={this.props.whishList} />
+        <WishListView wishList={this.props.wishList} />
       </div>
     )
   }
