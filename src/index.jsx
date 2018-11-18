@@ -1,7 +1,7 @@
 import { render } from 'react-dom'
 import App from './components/App'
-import { WishList } from './models/WishList'
 import { getSnapshot } from 'mobx-state-tree'
+import { WishList } from './models/WishList'
 
 let initialState = {
   items: [
