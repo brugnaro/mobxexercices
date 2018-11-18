@@ -1,4 +1,4 @@
-import { types } from 'mobx-state-tree'
+import { types, getParent, destroy } from 'mobx-state-tree'
 
 // const data = {
 //   "name": "Harry Potter",
@@ -19,6 +19,9 @@ export const WishListItem = types.model({
   },
   changeImage (newImage) {
     self.image = newImage
+  },
+  remove () {
+    getParent(self, 2).remove(self)
   }
 }))
 
@@ -27,6 +30,10 @@ export const WishList = types.model({
 }).actions(self => ({
   add (item) {
     self.items.push(item)
+  },
+  remove (item) {
+    // self.items.splice(self.items.indexOf(item), 1)
+    destroy(item)
   }
 })).views(self => ({
   get totalPrice () {
