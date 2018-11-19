@@ -1,6 +1,6 @@
 import { render } from 'react-dom'
 import App from './components/App'
-import { getSnapshot } from 'mobx-state-tree'
+import { addMiddleware, getSnapshot } from 'mobx-state-tree'
 
 import { WishList } from './models/WishList'
 import { Group } from './models/Group'
@@ -38,6 +38,10 @@ let initialGroupState = {
 let wishList = WishList.create(initialState)
 
 let group = Group.create(initialGroupState)
+addMiddleware(group, (call, next) => {
+  console.log(`[${call.type}] ${call.name}`)
+  return next(call)
+})
 
 function renderApp () {
   render(
