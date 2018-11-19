@@ -10,5 +10,17 @@
       "price": 349.95,
       "image": "http://image"
     }
+  ],
+  "suggestions_m": [
+    {
+      "name": "Cart",
+      "price": 1000,
+      "image": "http://image"
+    },
+    {
+      "name": "Video Game",
+      "price": 600.00,
+      "image": "http://image"
+    }
   ]
 }
