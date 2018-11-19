@@ -2,7 +2,7 @@ import { Component } from 'react'
 import WishListView from './WishListView'
 import '../assets/css/App.css'
 
-export default class App extends Component {
+class App extends Component {
   constructor (props) {
     super()
     this.state = { selectedUser: null }
@@ -24,6 +24,10 @@ export default class App extends Component {
         {selectedUser && <WishListView wishList={selectedUser.wishList} />}
         {selectedUser &&
           <button onClick={selectedUser.getSuggestions}>Suggestions</button>}
+        <button onClick={group.drawLots}>Draw Lots</button>
+        <h2>
+          {selectedUser && selectedUser.recipient ? selectedUser.recipient : ''}
+        </h2>
       </div>
     )
   }
@@ -32,3 +36,5 @@ export default class App extends Component {
     this.setState({ selectedUser: event.target.value })
   }
 }
+
+export default App

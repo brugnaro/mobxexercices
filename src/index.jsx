@@ -23,14 +23,16 @@ let initialState = {
 let initialGroupState = {
   users: [
     {
-      id: 1,
+      id: '0',
       name: 'Jose',
-      gender: 'm'
+      gender: 'm',
+      recipient: 'rec00'
     },
     {
-      id: 2,
+      id: '1',
       name: 'Joana',
-      gender: 'f'
+      gender: 'f',
+      recipient: 'rec01'
     }
   ]
 }
